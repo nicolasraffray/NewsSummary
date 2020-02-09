@@ -12,4 +12,4 @@
   StoryList.prototype.getList = function(){ return this.list }
 
   exports.StoryList = StoryList
-})(this)
+})(this);

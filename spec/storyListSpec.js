@@ -5,5 +5,5 @@
   assert.isTrue(storyList.getList()[0].getHeadline() === "hi" )
   assert.isTrue(storyList.getList()[0].getLink() === "www.test.com" )
   console.log('.')
-})()
+})();
 
