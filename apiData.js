@@ -9,7 +9,7 @@ request.onload = function(){
   var data = JSON.parse(this.response).response.results
   console.log(data)
   if(request.status === 200){ for(var i = 0; i < data.length; i++ ){
-    storyList.addStory(data[i].webTitle, data[i].webPublicationDate, data[i].webUrl)}
+    storyList.addStory(data[i].webTitle, data[i].webPublicationDate, data[i].webUrl, image = data[i].fields.main)}
 
   var controller = new StoryController(storyList)
   controller.insertHeadlineHTML()}

@@ -1,5 +1,5 @@
 var story = new Story(headline = "test headline", date = 2020-01-01, id = 0,
-                              link = 'test link');
+                              link = 'test link', image = "image.jpg");
 
 (function testGetHeadline(){
   assert.isTrue(story.getHeadline() === "test headline")
@@ -19,4 +19,8 @@ var story = new Story(headline = "test headline", date = 2020-01-01, id = 0,
 (function testGetLink(){
   assert.isTrue(story.getLink() === "test link")
   console.log('.')
+})();
+
+(function testGetImage(){
+  assert.isTrue(story.getImage() === 'image.jpg')
 })();
