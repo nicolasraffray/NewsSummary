@@ -13,4 +13,4 @@
     return array.join("<br><br>")
   }
   exports.StoryListView = StoryListView
-})(this)
+})(this);
