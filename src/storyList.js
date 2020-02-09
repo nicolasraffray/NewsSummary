@@ -5,7 +5,7 @@
   }
 
   StoryList.prototype.addStory = function(headline, date, link){
-    this.list.push(new Story(headline = headline, date = date, id = this.idGenerator, link = link));
+    this.list.push(new Story(headline = headline, date = date,id = this.idGenerator, link = link));
     this.idGenerator++
   }
 

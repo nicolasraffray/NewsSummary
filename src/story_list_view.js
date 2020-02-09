@@ -1,4 +1,3 @@
-// for now we will just test for one story
 (function(exports){
 
   function StoryListView(StoryList){
@@ -6,8 +5,12 @@
   }
 
   StoryListView.prototype.headlineToHTML = function(){
-    story = this.storyList.list[0]
-    return `<div class='story'><a id=${story.getID()} href='#story/${story.getID()}'>${story.getHeadline()}</a><br><a href='${story.getLink()}'>Read the Full Story</a></div>`
+    list = this.storyList.list
+    var array = []
+    for(let i = 0; i < list.length; i++){
+      array.push(`<div class='story'><a id=${list[i].getID()} href='#story/${list[i].getID()}'>${list[i].getHeadline()}</a><br><a href='${list[i].getLink()}'>Read the Full Story</a></div>`)
+    }
+    return array.join("<br><br>")
   }
   exports.StoryListView = StoryListView
 })(this)
