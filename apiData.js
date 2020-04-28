@@ -1,25 +1,36 @@
 
-var request = new XMLHttpRequest()
-var url = ["https://content.guardianapis.com/search?show-elements=all&show-fields=all&api-key=f302c6ce-8b45-410f-92dc-9cd452aeb06a&q=uk&page-size=5", "http://news-summary-api.herokuapp.com/aylien?apiRequestUrl=https://api.aylien.com/api/v1/summarize?url=https://www.theguardian.com/world/live/2020/apr/23/coronavirus-live-news-update-covid-19-face-masks"] 
+var url = ["https://content.guardianapis.com/search?show-elements=all&show-fields=all&api-key=f302c6ce-8b45-410f-92dc-9cd452aeb06a&q=uk&page-size=5", "https://content.guardianapis.com/search?show-elements=all&show-fields=all&api-key=f302c6ce-8b45-410f-92dc-9cd452aeb06a&q=uk&page-size=5"] 
 
 var storyList = new StoryList
 
-for(let i = 0; i < url.length; i++){
+fetch("https://content.guardianapis.com/search?show-elements=all&show-fields=all&api-key=f302c6ce-8b45-410f-92dc-9cd452aeb06a&q=uk&page-size=5")
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    console.log(data);
+  });
 
-  request.open('GET',url[i],true)
-  console.log(request)
+
+
+for(let i = 0; i < url.length; i++){
+  
+  
+  request.open('GET',url[i])
   request.onreadystatechange = function(){
-    console.log(request.readyState)
-    console.log(XMLHttpRequest.DONE)
+    console.log(request.readyState === XMLHttpRequest.DONE)
     console.log(request.status)
     if(request.readyState === XMLHttpRequest.DONE && request.status === 200){
+      console.log(i)
       console.log(request)
-      var data = JSON.parse(request.responseText);
-      console.log('DATA FROM THE API', data.text)
+      var data = JSON.parse(request);
+      console.log('DATA FROM THE API', data)
     } 
   }
   request.send()
 }
+
+
 
 
 // request.onload = function(){
