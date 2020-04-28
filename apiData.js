@@ -1,34 +1,26 @@
 
-var url = ["https://content.guardianapis.com/search?show-elements=all&show-fields=all&api-key=f302c6ce-8b45-410f-92dc-9cd452aeb06a&q=uk&page-size=5", "https://content.guardianapis.com/search?show-elements=all&show-fields=all&api-key=f302c6ce-8b45-410f-92dc-9cd452aeb06a&q=uk&page-size=5"] 
+var urls = [] 
 
 var storyList = new StoryList
 
-fetch("https://content.guardianapis.com/search?show-elements=all&show-fields=all&api-key=f302c6ce-8b45-410f-92dc-9cd452aeb06a&q=uk&page-size=5")
-  .then((response) => {
-    return response.json();
-  })
-  .then((data) => {
-    console.log(data);
-  });
-
-
-
-for(let i = 0; i < url.length; i++){
-  
-  
-  request.open('GET',url[i])
-  request.onreadystatechange = function(){
-    console.log(request.readyState === XMLHttpRequest.DONE)
-    console.log(request.status)
-    if(request.readyState === XMLHttpRequest.DONE && request.status === 200){
-      console.log(i)
-      console.log(request)
-      var data = JSON.parse(request);
-      console.log('DATA FROM THE API', data)
-    } 
+fetch("https://content.guardianapis.com/search?show-elements=all&show-fields=all&api-key=f302c6ce-8b45-410f-92dc-9cd452aeb06a&q=uk&page-size=5",{
+  method: "GET"
+})
+.then((response) => {
+    return response.json();})
+.then((data) => {
+  let mainCall = data.response.results;
+  console.log(mainCall)
+  for(let i = 0; i < mainCall.length; i++ ){
+    urls.push(mainCall[i].webUrl)
   }
-  request.send()
-}
+});
+
+
+
+
+
+
 
 
 
