@@ -1,6 +1,7 @@
 
-var urls = [] 
 
+
+var urls = [] 
 var storyList = new StoryList
 
 fetch("https://content.guardianapis.com/search?show-elements=all&show-fields=all&api-key=f302c6ce-8b45-410f-92dc-9cd452aeb06a&q=uk&page-size=5",{
@@ -12,9 +13,25 @@ fetch("https://content.guardianapis.com/search?show-elements=all&show-fields=all
   let mainCall = data.response.results;
   console.log(mainCall)
   for(let i = 0; i < mainCall.length; i++ ){
-    urls.push(mainCall[i].webUrl)
+    fetch("http://news-summary-api.herokuapp.com/aylien?apiRequestUrl=https://api.aylien.com/api/v1/summarize?url=" + mainCall[i].webUrl, {
+      method: "GET"
+    })
+    .then((response) => {
+      return response.json()
+    })
+    .then((data) => {
+
+      var summary = data.text
+      storyList.addStory(mainCall[i].webTitle, mainCall[i].webPublicationDate, mainCall[i].webUrl, image = mainCall[i].fields.main, summary=summary)
+    })
+   
   }
+  console.log(storyList)
+  var controller = new StoryController(storyList)
+  controller.insertHeadlineHTML()
 });
+
+
 
 
 
