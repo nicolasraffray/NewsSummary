@@ -4,6 +4,17 @@
   margin-right: auto
 }
 
+.story{
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#summary{
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
 img {
   display: block;
   margin-left: auto;
